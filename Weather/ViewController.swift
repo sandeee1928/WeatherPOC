@@ -88,6 +88,10 @@ class ViewController: UIViewController {
     
 
     private func updateUI() {
+        
+        messageLabel.isHidden = true
+        containerView.isHidden = false
+        
         locationLabel.text = weather.name
         currentCondition.text = self.weather.condition;
         tempratureLabel.text = self.weather.tempreture
