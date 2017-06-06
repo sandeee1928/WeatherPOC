@@ -1,0 +1,19 @@
+
+
+Bundler
+=======
+
+Install bundler with:
+
+    gem install bundler
+
+Install gems from gemfile with:
+
+    bundle install --path vendor
+
+CocoaPods
+=========
+
+After running bundle as per the Bundler section above, run:
+
+    bundle exec pod install
