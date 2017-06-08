@@ -1,19 +1,11 @@
 
 
-Bundler
-=======
+App Overview
 
-Install bundler with:
+This is a weather app which uses "openweathermap" public api to get the weather related data. We can search and add weather details of multiple location.
 
-    gem install bundler
-
-Install gems from gemfile with:
-
-    bundle install --path vendor
-
-CocoaPods
-=========
-
-After running bundle as per the Bundler section above, run:
-
-    bundle exec pod install
+Features
+1. Shows weather detail of the selected location.
+2. Search any location/city by there name.
+3. Add multiple location and can switch to any saved location by selecting from the list of locations.
+3. Current temperature, high and low temperature, sunrise, sunset timing, wind speed etc are key informations.
