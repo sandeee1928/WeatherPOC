@@ -23,10 +23,8 @@ class WeatherViewModel {
     var visibility: String? = nil
     
     init(weather: WeatherModel) {
-        
-        
+    
         self.name = weather.name
-        
         if let weathr = weather.weathers?.first {
             if let condition = weathr.main {
                 self.condition = condition

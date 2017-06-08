@@ -7,15 +7,14 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 struct Coordinate {
     let lat: Double?
     let lon: Double?
     
-    init(json: JSON) {
-        self.lat = json["lat"].double
-        self.lon = json["lon"].double
+    init(json: [String: AnyObject]?) {
+        self.lat = json?["lat"] as? Double
+        self.lon = json?["lon"] as? Double
     }
 }
 
@@ -25,11 +24,11 @@ struct Weather {
     let description: String?
     let icon: String?
     
-    init(json: JSON) {
-        self.id = json["id"].int
-        self.main = json["main"].string
-        self.description = json["description"].string
-        self.icon = json["icon"].string
+    init(json: [String: AnyObject]?) {
+        self.id = json?["id"] as? Int
+        self.main = json?["main"] as? String
+        self.description = json?["description"] as? String
+        self.icon = json?["icon"] as? String
     }
 }
 
@@ -40,24 +39,24 @@ struct Main {
     let tempMin: Int?
     let tempMax: Int?
     
-    init(json: JSON) {
-        self.temp = json["temp"].int
-        self.pressure = json["pressure"].int
-        self.humidity = json["humidity"].int
-        self.tempMin = json["temp_min"].int
-        self.tempMax = json["temp_max"].int
+    init(json: [String: AnyObject]!) {
+        self.temp = json?["temp"] as? Int
+        self.pressure = json?["pressure"] as? Int
+        self.humidity = json?["humidity"] as? Int
+        self.tempMin = json?["temp_min"] as? Int
+        self.tempMax = json?["temp_max"] as? Int
     }
 }
 
 struct Wind {
     let speed: Double?
-    let deg: Int?
+    let deg: Double?
     let gust: Double?
     
-    init(json: JSON) {
-        self.speed = json["speed"].double
-        self.deg = json["deg"].int
-        self.gust = json["gust"].double
+    init(json: [String: AnyObject]?) {
+        self.speed = json?["speed"] as? Double
+        self.deg = json?["deg"] as? Double
+        self.gust = json?["gust"] as? Double
     }
 }
 
@@ -69,13 +68,14 @@ struct System {
     let sunrise: Int?
     let sunset: Int?
     
-    init(json: JSON) {
-        self.type = json["type"].int
-        self.id = json["id"].int
-        self.message = json["message"].double
-        self.country = json["message"].string
-        self.sunrise = json["sunrise"].int
-        self.sunset = json["sunset"].int
+    init(json: [String: AnyObject]?) {
+        self.type = json?["type"] as? Int
+        self.id = json?["id"] as? Int
+        self.message = json?["message"] as? Double
+        self.country = json?["country"] as? String
+        self.sunrise = json?["sunrise"] as? Int
+        self.sunset = json?["sunset"] as? Int
+        
     }
 }
 
@@ -92,21 +92,21 @@ struct WeatherModel {
     let name: String?
     let cod: Int?
     
-    init(json: JSON) {
-        self.coordinate = Coordinate(json: json["coord"])
-        self.base = json["base"].string
-        self.main = Main(json: json["main"])
-        self.visibility = json["visibility"].int
-        self.wind = Wind(json: json["wind"])
-        self.system = System(json: json["sys"])
+    init(json: [String: AnyObject]) {
+        self.coordinate = Coordinate(json: json["coord"] as? [String : AnyObject])
+        self.base = json["base"]?.string
+        self.main = Main(json: json["main"] as! [String : AnyObject])
+        self.visibility = Int((json["visibility"]?.int64Value)!)
+        self.wind = Wind(json: json["wind"] as? [String : AnyObject])
+        self.system = System(json: json["sys"] as? [String : AnyObject])
         
-        self.id = json["id"].int
-        self.name = json["name"].string
-        self.cod = json["cod"].int
+        self.id = json["id"] as? Int
+        self.name = json["name"] as? String
+        self.cod = json["cod"] as? Int //Int((json["cod"]?.int64Value)!)
         
         var weathers = [Weather]()
         
-        for json in json["weather"].arrayValue {
+        for json in json["weather"] as! [[String:AnyObject]] {
             weathers.append(Weather(json: json))
         }
         self.weathers = weathers

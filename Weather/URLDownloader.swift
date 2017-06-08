@@ -23,7 +23,7 @@ class URLDownloader {
         self.session = URLSession(configuration: config)
     }
     
-    func downLoad(urlString: String, taskCallback: @escaping (Bool, Any?) -> ()) {
+    func downLoad(urlString: String, taskCallback: @escaping (Bool, AnyObject?) -> ()) {
         let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!)
         let request = URLRequest(url: url!)
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) -> Void in
