@@ -27,6 +27,21 @@ class ViewControllerTest: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
+    func testCheckAllOutletConnected() {
+        XCTAssertNotNil(viewController.activityIndicator)
+        XCTAssertNotNil(viewController.messageLabel)
+        XCTAssertNotNil(viewController.containerView)
+        XCTAssertNotNil(viewController.locationLabel)
+        XCTAssertNotNil(viewController.currentCondition)
+        XCTAssertNotNil(viewController.tempratureLabel)
+        XCTAssertNotNil(viewController.sunriseLabel)
+        XCTAssertNotNil(viewController.sunsetLabel)
+        XCTAssertNotNil(viewController.windLabel)
+        XCTAssertNotNil(viewController.humidityLabel)
+        XCTAssertNotNil(viewController.pressureLabel)
+        XCTAssertNotNil(viewController.visibilityLabel)
+    }
 
     func testShowAddLocationMessageIfNoLocationFound() {
         
